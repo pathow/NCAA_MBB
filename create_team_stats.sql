@@ -18,6 +18,11 @@ create table team_stats as
 
 commit;
 
-select * from team_stats;
+select a.*, b."Game_Year"as year, b."Game_Date" as day, b."Game_Tipoff" as tipoff 
+from team_stats as a
+	left join (select "Game_Year", "Game_Date", "Game_ID", "Game_Tipoff" from gen_info) as b
+	on a.game_id = b."Game_ID";
+
+
 
 
